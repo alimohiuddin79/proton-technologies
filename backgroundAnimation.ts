@@ -1,8 +1,14 @@
+
 // Some random colors
 const colors: string[] = ["#03045e", "#00b4d8", "#d90429", "#ffb703", "#fb8500", "#80ed99", "#a5a58d"];
 
 const numBalls: number = 60;
 const balls: HTMLDivElement[] = [];
+
+// Function to get the current viewport width
+function getViewportWidth() {
+  return window.innerWidth;
+}
 
 for (let i: number = 0; i < numBalls; i++) {
   let ball: HTMLDivElement = document.createElement("div");
@@ -16,7 +22,12 @@ for (let i: number = 0; i < numBalls; i++) {
   const maxLeftPosition: number = 100 - ballSize; // Limit the left position to avoid crossing the width.
   ball.style.left = `${Math.floor(Math.random() * maxLeftPosition)}%`;
 
-  ball.style.top = `${Math.floor(Math.random() * 300)}%`; // Set top position as percentage.
+// Check if viewport width is equal to or less than 1024
+if (getViewportWidth() <= 1024) {
+  ball.style.top = `${Math.floor(Math.random() * 1300)}%`;
+} else {
+  ball.style.top = `${Math.floor(Math.random() * 1000)}%`;
+} // Set top position as percentage.
 
   ball.style.transform = `scale(${Math.random()})`;
 

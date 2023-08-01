@@ -1,5 +1,17 @@
+import { useLayoutEffect } from "react"
+import Aos from "aos";
+import "aos/dist/aos.css";
+
 
 const HeroSection = () => {
+
+    useLayoutEffect(() => {
+        const timeout = setTimeout(() => {
+            Aos.init();
+          }, 10);
+      
+          return () => clearTimeout(timeout);
+    }, []);
   return (
     <section
         id='home'
@@ -9,8 +21,11 @@ const HeroSection = () => {
             items-center
             py-16
             px-6
-            md:px-0
+            xl:px-0
             gap-y-8
+            max-w-screen-xl 
+            w-full 
+            mx-auto
         '
     >
         <div
@@ -22,6 +37,8 @@ const HeroSection = () => {
                 gap-8
                 text-white
             '
+            data-aos='fade-right'
+            data-aos-duration='2000'
         >
             <h1
                 className='
@@ -72,6 +89,8 @@ const HeroSection = () => {
                 flex
                 md:w-1/2
           '
+          data-aos='fade-left'
+          data-aos-duration='2000'
         >
             <img
                 src='/banner.png'

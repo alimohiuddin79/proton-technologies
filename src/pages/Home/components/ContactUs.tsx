@@ -1,7 +1,23 @@
-import { useState } from "react"
+import { useState } from "react";
+import { useToast } from '@chakra-ui/react'
+
+
+import { useLayoutEffect } from "react"
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 
 const ContactUs = () => {
+
+    useLayoutEffect(() => {
+        const timeout = setTimeout(() => {
+            Aos.init();
+          }, 10);
+      
+          return () => clearTimeout(timeout);
+    }, []);
+
+    const toast = useToast();
     const [fields, setFields] = useState({
         name: '',
         email: '',
@@ -9,22 +25,40 @@ const ContactUs = () => {
         comment: '',
     });
 
+    // const [loading, setLoading] = useState(false);
+
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setFields((prevFields) => ({
             ...prevFields, [e.target.name]: e.target.value,
         }));
     }
 
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        console.log(fields);
+        toast({
+            title: "Email Sent.",
+            description: "We've contact you soon.",
+            status: 'success',
+            duration: 5000,
+            isClosable: true,
+            position: 'top',
+        });
+    }
+
   return (
     <section
-      id="home"
+      id="contact-us"
       className="
             flex
             flex-col
             gap-14
             py-16
             px-6
-            md:px-0
+            xl:px-0
+            max-w-screen-xl 
+            w-full 
+            mx-auto
         "
     >
         <div
@@ -41,6 +75,8 @@ const ContactUs = () => {
                     text-4xl
                     uppercase
                 '
+                data-aos="fade-up"
+                data-aos-duration="2000"
             >
                 Contact Us
             </div>
@@ -48,15 +84,19 @@ const ContactUs = () => {
                 className='
                     text-xl
                 '
+                data-aos="fade-up"
+                data-aos-duration="2000"
+                data-aos-delay="300"
             >
                 Get in touch with us
             </div>
         </div>
-        <form>
+        <form onSubmit={handleSubmit}>
             <div
                 className='
                     flex
                     flex-col
+                    justify-center
                     gap-12
                 '
             >
@@ -68,6 +108,9 @@ const ContactUs = () => {
                         gap-x-8
                         gap-y-12
                     '
+                    data-aos="fade-up"
+                    data-aos-duration="2000"
+                    data-aos-delay="400"
                 >
                     <input
                         required
@@ -86,6 +129,7 @@ const ContactUs = () => {
                             text-xl
                             bg-transparent
                             outline-none
+                            text-white
                         '
                     />
                     <input
@@ -105,6 +149,7 @@ const ContactUs = () => {
                             text-xl
                             bg-transparent
                             outline-none
+                            text-white
                         '
                     />
                 </div>
@@ -124,7 +169,11 @@ const ContactUs = () => {
                         text-xl
                         bg-transparent
                         outline-none
+                        text-white
                     '
+                    data-aos="fade-up"
+                    data-aos-duration="2000"
+                    data-aos-delay="600"
                 />
                 <input
                     required
@@ -142,8 +191,32 @@ const ContactUs = () => {
                         text-xl
                         bg-transparent
                         outline-none
+                        text-white
                     '
+                    data-aos="fade-up"
+                    data-aos-duration="2000"
+                    data-aos-delay="800"
                 />
+                <button
+                    type="submit"
+                    className="
+                        bg-blue-500
+                        text-white
+                        text-xl
+                        uppercase
+                        hover:bg-primary-1
+                        rounded-full
+                        px-10
+                        py-3
+                        max-w-fit
+                        mx-auto
+                    "
+                    data-aos="fade-up"
+                    data-aos-duration="2000"
+                    data-aos-delay="1000"
+                >
+                    Submit
+                </button>
             </div>
         </form>
     </section>

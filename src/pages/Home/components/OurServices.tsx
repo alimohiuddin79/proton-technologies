@@ -5,9 +5,22 @@ import { BsFlagFill } from "react-icons/bs";
 import { TfiWrite } from "react-icons/tfi";
 import { ImMobile } from "react-icons/im";
 
+import { useLayoutEffect } from "react"
+import Aos from "aos";
+import "aos/dist/aos.css";
+
+
 
 const OurServices = () => {
 
+    useLayoutEffect(() => {
+        const timeout = setTimeout(() => {
+            Aos.init();
+          }, 10);
+      
+          return () => clearTimeout(timeout);
+    }, []);
+    
     const services = [
         {
             icon: <FaPaintbrush />,
@@ -42,14 +55,17 @@ const OurServices = () => {
     ]
   return (
     <section
-      id="home"
+      id="services"
       className="
             flex
             flex-col
             gap-14
             py-16
             px-6
-            md:px-0
+            xl:px-0
+            max-w-screen-xl 
+            w-full 
+            mx-auto
         "
     >
         <h1
@@ -60,6 +76,8 @@ const OurServices = () => {
                 text-white
                 text-center
             "
+            data-aos="fade-up"
+            data-aos-duration="2000"
         >
             Our Services
         </h1>
@@ -68,10 +86,13 @@ const OurServices = () => {
                 relative
                 grid
                 grid-cols-1
-                sm:grid-cols-2
-                lg:grid-cols-3
+                lg:grid-cols-2
+                xl:grid-cols-3
                 gap-14
             "
+            data-aos="fade-up"
+            data-aos-duration="2000"
+            data-aos-delay="500"
         >
             {services.map((service) => (
                     <div
@@ -98,10 +119,7 @@ const OurServices = () => {
                         <div
                             className="
                                 text-4xl
-                                absolute
-                                left-[45%]
-                                right-[45%]
-                                -top-5
+                                text-center
                                 mx-auto
                             "
                         >

@@ -1,14 +1,35 @@
+import { useLayoutEffect } from "react"
+import Aos from "aos";
+import "aos/dist/aos.css";
+
 const AboutSection = () => {
+
+  useLayoutEffect(() => {
+    const timeout = setTimeout(() => {
+        Aos.init();
+      }, 10);
+  
+      return () => clearTimeout(timeout);
+    }, []);
+
+    const handleMenuClick = (event: any, id: string) => {
+        event.preventDefault();
+        const targetSection = document.querySelector(id);
+        if (targetSection) {
+          targetSection.scrollIntoView({ behavior: "smooth" });
+        }
+    };
+
   return (
     <section
-      id="home"
+      id="about"
       className="
             flex
             flex-col
             gap-12
             py-16
             px-6
-            md:px-0
+            xl:px-0
         "
     >
       <div
@@ -17,6 +38,9 @@ const AboutSection = () => {
                 flex-wrap
                 gap-y-8
                 items-center
+                max-w-screen-xl 
+                w-full 
+                mx-auto
             "
       >
         <div
@@ -25,6 +49,8 @@ const AboutSection = () => {
                 flex
                 md:w-1/2
           "
+          data-aos="fade-right"
+          data-aos-duration="2000"
         >
           <img
             src="/about.png"
@@ -44,6 +70,8 @@ const AboutSection = () => {
                 text-white
                 md:pt-8
           "
+          data-aos="fade-left"
+          data-aos-duration="2000"
         >
           <h1
             className="
@@ -87,6 +115,7 @@ const AboutSection = () => {
                     transition-all
                     duration-500
                 "
+                onClick={(e) => handleMenuClick(e, '#contact-us')}
           >
             Let's Start the Project!
           </a>
@@ -112,6 +141,7 @@ const AboutSection = () => {
                         uppercase
                         max-w-fit
                     "
+                    onClick={(e) => handleMenuClick(e, '#contact-us')}
             >
               Start Project
             </a>
@@ -120,16 +150,26 @@ const AboutSection = () => {
       </div>
       <div
         className="
-            flex
-            flex-col
-            gap-8
+            pattern
         "
       >
         <div
+          className="
+            max-w-screen-xl 
+            w-full 
+            mx-auto
+            flex
+            flex-col
+            gap-8
+            py-6
+            pattern-content
+          "
+        >
+        <div
             className="
-                border-l-[6px]
+                border-l-4
                 border-dashed
-                border-primary-1/30
+                border-primary-1/75
                 flex
                 flex-col
                 gap-6
@@ -141,6 +181,9 @@ const AboutSection = () => {
                 py-4
                 pl-12
             "
+            data-aos="fade-up"
+            data-aos-duration="2000"
+            data-aos-delay="300"
         >
             <h1
                 className="
@@ -161,19 +204,18 @@ const AboutSection = () => {
                     w-4
                     h-4
                     rounded-full
-                    bg-primary-1/30
+                    bg-primary-1/75
                     absolute
-                    -bottom-5
+                    -bottom-6
                     -left-[10px]
-                    glow
                 "
             />
         </div>
         <div
             className="
-                border-l-[6px]
+                border-l-4
                 border-dashed
-                border-primary-1/30
+                border-primary-1/75
                 flex
                 flex-col
                 gap-6
@@ -185,6 +227,9 @@ const AboutSection = () => {
                 py-4
                 pl-12
             "
+            data-aos="fade-up"
+            data-aos-duration="2000"
+            data-aos-delay="600"
         >
             <h1
                 className="
@@ -205,19 +250,18 @@ const AboutSection = () => {
                     w-4
                     h-4
                     rounded-full
-                    bg-primary-1/30
+                    bg-primary-1/75
                     absolute
-                    -bottom-5
+                    -bottom-6
                     -left-[10px]
-                    glow
                 "
             />
         </div>
         <div
             className="
-                border-l-[6px]
+                border-l-4
                 border-dashed
-                border-primary-1/30
+                border-primary-1/75
                 flex
                 flex-col
                 gap-6
@@ -229,6 +273,9 @@ const AboutSection = () => {
                 py-4
                 pl-12
             "
+            data-aos="fade-up"
+            data-aos-duration="2000"
+            data-aos-delay="900"
         >
             <h1
                 className="
@@ -244,18 +291,18 @@ const AboutSection = () => {
             >
                 Let your brand speak for itself. That is the motto we follow at Proton. We make sure that your brand is distinctive, unique and appealing to the extent that will make your audience remembers you. Our team of professional branding experts make sure to provide your brand with an image that it is worth it.
             </p>
-            <div
+            {/* <div
                 className="
                     w-4
                     h-4
                     rounded-full
-                    bg-primary-1/30
+                    bg-primary-1/75
                     absolute
-                    -bottom-5
+                    -bottom-6
                     -left-[10px]
-                    glow
                 "
-            />
+            /> */}
+        </div>
         </div>
       </div>
     </section>

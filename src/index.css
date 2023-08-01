@@ -3,8 +3,9 @@
 @tailwind utilities;
 
 html,
-body {
-    @apply bg-[#04091d] max-w-[100vw] w-full overflow-x-hidden;
+body,
+:root {
+    @apply bg-[#04091d] max-w-[100vw] w-full min-h-screen overflow-x-hidden;
 }
 
 ::-webkit-scrollbar {
@@ -95,4 +96,18 @@ body {
   box-shadow: -3px 4px 25px 14px rgba(141,0,206,0.54);
 -webkit-box-shadow: -3px 4px 25px 14px rgba(141,0,206,0.54);
 -moz-box-shadow: -3px 4px 25px 14px rgba(141,0,206,0.54);
+}
+
+
+/* .pattern {
+  background-image:  repeating-radial-gradient(circle at 0 0, transparent 0, rgba(41, 41, 43, 0.5) 12px), repeating-linear-gradient(rgba(4, 9, 29, 0.3), rgba(27, 27, 44, 0.466));
+  background-color: #04091d;
+} */
+
+.pattern {
+  background-color: #04091d;
+  background-image: url('/public/pattern-2.jpg');
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: multiply;
 }

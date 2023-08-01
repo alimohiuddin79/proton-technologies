@@ -1,46 +1,57 @@
 import { useState } from "react";
+import { useLayoutEffect } from "react"
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 const OurProjects = () => {
 
-    const projectCategories = ['all', 'web', 'app', 'logo', 'branding'];
+    useLayoutEffect(() => {
+        const timeout = setTimeout(() => {
+            Aos.init();
+          }, 10);
+      
+          return () => clearTimeout(timeout);
+    }, []);
 
-    const all = [
-        '/web-1.jpg',
-        '/web-2.jpg',
-        '/web-3.jpg',
-        '/web-4.jpg',
-        '/web-5.jpg',
-        '/web-6.jpg',
-        '/web-7.jpg',
-        '/web-8.jpg',
-        '/web-9.jpg',
-        '/web-10.jpg',
-        '/app-1.jpg',
-        '/app-2.jpg',
-        '/app-3.jpg',
-        '/app-4.jpg',
-        '/app-5.jpg',
-        '/app-6.jpg',
-        '/app-7.jpg',
-        '/app-8.jpg',
-        '/logo-1.webp',
-        '/logo-2.jpg',
-        '/logo-3.webp',
-        '/logo-4.webp',
-        '/logo-5.webp',
-        '/logo-6.jpg',
-        '/logo-7.webp',
-        '/logo-8.webp',
-        '/logo-9.webp',
-        '/logo-10.jpg',
-        '/branding-1.webp',
-        '/branding-2.jpg',
-        '/branding-3.webp',
-        '/branding-4.webp',
-        '/branding-5.webp',
-        '/branding-6.jpg',
-        '/branding-7.webp',
-    ];
+    const projectCategories = ['web', 'app', 'logo', 'branding'];
+
+    // const all = [
+    //     '/web-1.jpg',
+    //     '/web-2.jpg',
+    //     '/web-3.jpg',
+    //     '/web-4.jpg',
+    //     '/web-5.jpg',
+    //     '/web-6.jpg',
+    //     '/web-7.jpg',
+    //     '/web-8.jpg',
+    //     '/web-9.jpg',
+    //     '/web-10.jpg',
+    //     '/app-1.jpg',
+    //     '/app-2.jpg',
+    //     '/app-3.jpg',
+    //     '/app-4.jpg',
+    //     '/app-5.jpg',
+    //     '/app-6.jpg',
+    //     '/app-7.jpg',
+    //     '/app-8.jpg',
+    //     '/logo-1.webp',
+    //     '/logo-2.jpg',
+    //     '/logo-3.webp',
+    //     '/logo-4.webp',
+    //     '/logo-5.webp',
+    //     '/logo-6.jpg',
+    //     '/logo-7.webp',
+    //     '/logo-8.webp',
+    //     '/logo-9.webp',
+    //     '/logo-10.jpg',
+    //     '/branding-1.webp',
+    //     '/branding-2.jpg',
+    //     '/branding-3.webp',
+    //     '/branding-4.webp',
+    //     '/branding-5.webp',
+    //     '/branding-6.jpg',
+    //     '/branding-7.webp',
+    // ];
 
     const webs = [
         '/web-1.jpg',
@@ -89,17 +100,20 @@ const OurProjects = () => {
         '/branding-7.webp',
     ];
     
-    const [currentCategory, setCurrentCategory] = useState(projectCategories[0]);
+    const [currentCategory, setCurrentCategory] = useState(projectCategories[3]);
   return (
     <section
-      id="home"
+      id="portfolio"
       className="
             flex
             flex-col
             gap-14
             py-16
             px-6
-            md:px-0
+            xl:px-0
+            max-w-screen-xl 
+            w-full 
+            mx-auto
         "
     >
         <div
@@ -107,7 +121,7 @@ const OurProjects = () => {
                 w-full
                 flex
                 flex-wrap
-                gap-6
+                gap-8
                 justify-between
                 items-center
             "
@@ -119,6 +133,8 @@ const OurProjects = () => {
                     uppercase
                     text-white
                 "
+                data-aos="fade-right"
+                data-aos-duration="2000"
             >
                 Our Project
             </div>
@@ -130,7 +146,7 @@ const OurProjects = () => {
                     gap-4
                 "
             >
-                {projectCategories.map((category) => (
+                {projectCategories.map((category, index) => (
                     <div
                         className={`
                             py-3
@@ -148,6 +164,9 @@ const OurProjects = () => {
                         `}
                         key={category}
                         onClick={() => setCurrentCategory(category)}
+                        data-aos="fade-left"
+                        data-aos-duration="2000"
+                        data-aos-delay={index * 200}
                     >
                         {category}
                     </div>
@@ -170,7 +189,7 @@ const OurProjects = () => {
                         gap-8
                     "
                 >
-                    {currentCategory === 'all' && (
+                    {/* {currentCategory === 'all' && (
                         all.map((currentImage) => (
                             <img
                                 key={currentImage}
@@ -185,11 +204,12 @@ const OurProjects = () => {
                                     duration-500
                                     hover:scale-105
                                 "
+                                loading="lazy"
                             />
                         ))
-                    )}
+                    )} */}
                     {currentCategory === 'web' && (
-                        webs.map((currentImage) => (
+                        webs.map((currentImage, index) => (
                             <img
                                 key={currentImage}
                                 src={currentImage}
@@ -203,11 +223,15 @@ const OurProjects = () => {
                                     duration-500
                                     hover:scale-105
                                 "
+                                loading="lazy"
+                                data-aos="fade-up"
+                                data-aos-duration="2000"
+                                data-aos-delay={index * 200}
                             />
                         ))
                     )}
                     {currentCategory === 'app' && (
-                        apps.map((currentImage) => (
+                        apps.map((currentImage, index) => (
                             <img
                                 key={currentImage}
                                 src={currentImage}
@@ -221,11 +245,15 @@ const OurProjects = () => {
                                     duration-500
                                     hover:scale-105
                                 "
+                                loading="lazy"
+                                data-aos="fade-up"
+                                data-aos-duration="2000"
+                                data-aos-delay={index * 200}
                             />
                         ))
                     )}
                     {currentCategory === 'logo' && (
-                        logos.map((currentImage) => (
+                        logos.map((currentImage, index) => (
                             <img
                                 key={currentImage}
                                 src={currentImage}
@@ -239,11 +267,15 @@ const OurProjects = () => {
                                     duration-500
                                     hover:scale-105
                                 "
+                                loading="lazy"
+                                data-aos="fade-up"
+                                data-aos-duration="2000"
+                                data-aos-delay={index * 200}
                             />
                         ))
                     )}
                     {currentCategory === 'branding' && (
-                        brandings.map((currentImage) => (
+                        brandings.map((currentImage, index) => (
                             <img
                                 key={currentImage}
                                 src={currentImage}
@@ -257,6 +289,10 @@ const OurProjects = () => {
                                     duration-500
                                     hover:scale-105
                                 "
+                                loading="lazy"
+                                data-aos="fade-up"
+                                data-aos-duration="2000"
+                                data-aos-delay={index * 200}
                             />
                         ))
                     )}
